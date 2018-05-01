@@ -14,7 +14,6 @@ import butterknife.ButterKnife;
  * Activity的自定义基类
  * Created by xwx on 2018/4/30.
  */
-
 public abstract class Activity extends AppCompatActivity {
 
     @Override
@@ -22,12 +21,16 @@ public abstract class Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //在界面未初始化之前调用,初始化窗口
         initWindows();
+        //判断从其他Activity传过来的参数是否正确
         if (initArgs(getIntent().getExtras())) {
-            //
-            getContentLayoutId();
+            //获取布局文件资源id
+            int layoutId = getContentLayoutId();
+            //将布局设置到Activity界面中
+            setContentView(layoutId);
             initWidget();
             initData();
         } else {
+            //参数错误直接finish当前Activity
             finish();
         }
     }
@@ -41,11 +44,12 @@ public abstract class Activity extends AppCompatActivity {
         return true;
     }
 
-    //获取当前界面资源文件id,由子类实现
+    //获取布局资源文件id,由子类实现
     protected abstract int getContentLayoutId();
 
     //初始化控件
     protected void initWidget() {
+        //注册ButterKnife
         ButterKnife.bind(this);
     }
 
@@ -63,7 +67,7 @@ public abstract class Activity extends AppCompatActivity {
     }
 
     /**
-     * 按下返回按键触发
+     * 按下返回键触发
      */
     @Override
     public void onBackPressed() {

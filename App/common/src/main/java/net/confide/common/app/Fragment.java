@@ -47,7 +47,7 @@ public abstract class Fragment extends android.support.v4.app.Fragment{
                 ((ViewGroup)(mRoot.getParent())).removeView(mRoot);
             }
         }
-        //在return的时候根布局view会自动添加到container中
+        //在return的时候根布局root会自动添加到container中,若root已有父控件会报错
         return mRoot;
     }
 
@@ -63,11 +63,12 @@ public abstract class Fragment extends android.support.v4.app.Fragment{
 
     }
 
-    //获取当前界面资源文件id,由子类实现
+    //获取布局资源文件id,由子类实现
     protected abstract int getContentLayoutId();
 
     //初始化控件
     protected void initWidget(View root) {
+        //注册ButterKnife
         mRootUnbinder = ButterKnife.bind(this, root);
     }
 
