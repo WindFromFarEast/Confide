@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
- * RecyclerView适配器基类
+ * RecyclerView适配器基类——抽象类,不能被实例化,只能被继承
  */
 public abstract class RecyclerAdapter<Data> extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder<Data>>
         implements View.OnClickListener, View.OnLongClickListener, AdapterCallback<Data> {
@@ -94,7 +94,7 @@ public abstract class RecyclerAdapter<Data> extends RecyclerView.Adapter<Recycle
         holder.unbinder = ButterKnife.bind(holder, root);
         //绑定callback
         holder.callback = this;
-        return null;
+        return holder;
     }
 
     /**
@@ -209,7 +209,7 @@ public abstract class RecyclerAdapter<Data> extends RecyclerView.Adapter<Recycle
     }
 
     /**
-     * 将点击事件抛给子类处理的接口
+     * 将点击事件抛到外面处理的接口
      * @param <Data>
      */
     public interface AdapterListener<Data> {
