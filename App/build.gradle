@@ -34,4 +34,5 @@ ext{
     //相关依赖库版本
     supportVersion = '27.1.1'
     butterknifeVersion = '8.5.1'
+    geniusVersion = '2.0.0'
 }
