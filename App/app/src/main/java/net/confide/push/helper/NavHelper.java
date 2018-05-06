@@ -37,7 +37,7 @@ public class NavHelper<T> {
     }
 
     /**
-     * 添加Tab
+     * 添加Tab,一个子菜单项对应一个Tab
      * @param menuId Tab对应的菜单子项Id
      * @param tab
      */
@@ -89,7 +89,7 @@ public class NavHelper<T> {
     }
 
     /**
-     * Fragment的调度
+     * Fragment的切换
      * @param newTab 点击的Tab
      * @param oldTab 上一次点击的Tab
      */
@@ -144,7 +144,7 @@ public class NavHelper<T> {
     }
 
     /**
-     * 菜单子项类
+     * Tab：对应着每一个菜单子项类,也对应着一个Fragment
      * @param <T> 额外属性
      */
     public static class Tab<T> {

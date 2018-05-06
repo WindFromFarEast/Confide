@@ -2,8 +2,11 @@ package net.confide.push;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -18,6 +21,7 @@ import net.confide.push.fragment.main.ActiveFragment;
 import net.confide.push.fragment.main.ContactFragment;
 import net.confide.push.fragment.main.GroupFragment;
 import net.confide.push.helper.NavHelper;
+import net.qiujuer.genius.ui.Ui;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -25,7 +29,8 @@ import butterknife.OnClick;
 /**
  * 主界面
  */
-public class MainActivity extends Activity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends Activity implements BottomNavigationView.OnNavigationItemSelectedListener
+        , NavHelper.OnTabChangedListener<Integer> {
 
     //主界面布局中的各个控件
     //状态栏和标题栏的父容器
@@ -48,8 +53,12 @@ public class MainActivity extends Activity implements BottomNavigationView.OnNav
     @BindView(R.id.navigation)
     BottomNavigationView mNavigation;
 
+    //浮动按钮
+    @BindView(R.id.btn_action)
+    net.qiujuer.genius.ui.widget.FloatActionButton mAction;
+
     //Fragment调度和重用的工具类
-    private NavHelper mNavHelper;
+    private NavHelper<Integer> mNavHelper;
 
     @Override
     protected int getContentLayoutId() {
@@ -59,8 +68,12 @@ public class MainActivity extends Activity implements BottomNavigationView.OnNav
     @Override
     protected void initWidget() {
         super.initWidget();
-        //初始化Fragment的工具类
-        mNavHelper = new NavHelper();
+        //初始化调度Fragment的工具类
+        mNavHelper = new NavHelper<>(this, R.id.lay_container, getSupportFragmentManager(),this);
+        //
+        mNavHelper.add(R.id.action_home, new NavHelper.Tab<>(ActiveFragment.class, R.string.title_home))
+                .add(R.id.action_group, new NavHelper.Tab<>(GroupFragment.class, R.string.title_group))
+                .add(R.id.action_contact, new NavHelper.Tab<>(ContactFragment.class, R.string.title_contact));
         //使用Glide加载导航栏背景图片
         Glide.with(this).load(R.drawable.bg_src_morning).centerCrop().
                 into(new ViewTarget<View, GlideDrawable>(mLayAppbar) {
@@ -72,6 +85,18 @@ public class MainActivity extends Activity implements BottomNavigationView.OnNav
                 });
         //为底部导航栏设置菜单子项监听器
         mNavigation.setOnNavigationItemSelectedListener(this);
+    }
+
+    /**
+     * 初始化数据
+     */
+    @Override
+    protected void initData() {
+        super.initData();
+        //从底部导航栏中获取Menu菜单,初始化第一次点击菜单子项
+        Menu menu = mNavigation.getMenu();
+        //第一次进入界面时,默认显示Home子项,这个方法将回调onNavigationItemSelected('home对应的MenuItem');
+        menu.performIdentifierAction(R.id.action_home, 0);
     }
 
     /**
@@ -97,7 +122,38 @@ public class MainActivity extends Activity implements BottomNavigationView.OnNav
      */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        //将item的点击事件分发给工具类处理
+        //将item的点击事件分发给工具类处理,在这里面将会处理Fragment的切换
         return mNavHelper.performClickMenu(item.getItemId());
+    }
+
+    /**
+     * NavHelper处理了底部导航栏item的点击事件后回调的方法,在这里处理标题栏文字的改变
+     * @param newTab
+     * @param oldTab
+     */
+    @Override
+    public void onTabChanged(NavHelper.Tab<Integer> newTab, NavHelper.Tab<Integer> oldTab) {
+        //改变标题栏文字
+        mTitle.setText(newTab.extra);
+        //浮动按钮的动画
+        float transY = 0;
+        float rotation = 0;
+        if (newTab.extra.equals(R.string.title_home)) {
+            transY = Ui.dipToPx(getResources(), 76);
+        } else {
+            if (newTab.extra.equals(R.string.title_group)) {
+                mAction.setImageResource(R.drawable.ic_group_add);
+                rotation = -360;
+            } else {
+                mAction.setImageResource(R.drawable.ic_contact_add);
+                rotation = 360;
+            }
+        }
+        //播放动画
+        mAction.animate().rotation(rotation)
+                .translationY(transY)
+                .setInterpolator(new AnticipateOvershootInterpolator(1))
+                .setDuration(480)
+                .start();
     }
 }
