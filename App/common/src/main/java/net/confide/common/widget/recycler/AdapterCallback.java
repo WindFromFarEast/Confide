@@ -6,5 +6,5 @@ package net.confide.common.widget.recycler;
 public interface AdapterCallback<Data> {
 
     //手动通知RecyclerView进行刷新
-    void update(Data data);
+    void update(Data data, RecyclerAdapter.ViewHolder<Data> holder);
 }

@@ -1,9 +1,15 @@
 package net.confide.common.app;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -14,6 +20,8 @@ import butterknife.ButterKnife;
  * Created by xwx on 2018/4/30.
  */
 public abstract class Activity extends AppCompatActivity {
+
+    private static final int PERMISSION_WRITE_EXTERNAL_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,6 +34,7 @@ public abstract class Activity extends AppCompatActivity {
             int layoutId = getContentLayoutId();
             //将布局设置到Activity界面中
             setContentView(layoutId);
+            initPermission();
             initWidget();
             initData();
         } else {
@@ -88,5 +97,32 @@ public abstract class Activity extends AppCompatActivity {
         }
         super.onBackPressed();
         finish();
+    }
+
+    /**
+     * 初始化权限
+     */
+    protected void initPermission() {
+        //请求读写内存的权限
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this
+                    , new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}
+                    , PERMISSION_WRITE_EXTERNAL_REQUEST_CODE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_WRITE_EXTERNAL_REQUEST_CODE: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    //允许权限后进行的操作
+                } else {
+                    Toast.makeText(this, "拒绝权限将导致应用异常", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            }
+        }
     }
 }
