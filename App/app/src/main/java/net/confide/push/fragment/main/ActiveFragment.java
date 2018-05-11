@@ -1,7 +1,7 @@
 package net.confide.push.fragment.main;
 
 import net.confide.common.app.Fragment;
-import net.confide.common.widget.GalleyView;
+import net.confide.common.widget.GalleryView;
 import net.confide.push.R;
 
 import butterknife.BindView;
@@ -11,8 +11,8 @@ import butterknife.BindView;
  */
 public class ActiveFragment extends Fragment {
 
-    @BindView(R.id.galleyView)
-    GalleyView mGalley;
+    @BindView(R.id.galleryView)
+    GalleryView mGalley;
 
     public ActiveFragment() {
         // Required empty public constructor
@@ -26,7 +26,7 @@ public class ActiveFragment extends Fragment {
     @Override
     protected void initData() {
         super.initData();
-        mGalley.setup(getLoaderManager(), new GalleyView.SelectedChangeListener() {
+        mGalley.setup(getLoaderManager(), new GalleryView.SelectedChangeListener() {
             @Override
             public void onSelectedCountChanged(int count) {
 

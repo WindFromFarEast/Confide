@@ -4,8 +4,8 @@
     android:layout_height="match_parent"
     tools:context="net.confide.push.fragment.main.ActiveFragment">
 
-    <net.confide.common.widget.GalleyView
-        android:id="@+id/galleyView"
+    <net.confide.common.widget.GalleryView
+        android:id="@+id/galleryView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="1dp"/>

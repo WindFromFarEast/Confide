@@ -1,6 +1,7 @@
 package net.confide.common.app;
 
 import android.Manifest;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -59,6 +60,8 @@ public abstract class Activity extends AppCompatActivity {
     protected void initWidget() {
         //注册ButterKnife
         ButterKnife.bind(this);
+        //锁定屏幕方向为竖直
+        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
     //初始化数据

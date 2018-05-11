@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * 自定义图片选择器控件——基于RecyclerView
  */
-public class GalleyView extends RecyclerView {
+public class GalleryView extends RecyclerView {
 
     //RecyclerView适配器
     private Adapter mAdapter = new Adapter();
@@ -46,17 +46,17 @@ public class GalleyView extends RecyclerView {
     //
     private SelectedChangeListener mListener;
 
-    public GalleyView(Context context) {
+    public GalleryView(Context context) {
         super(context);
         init();
     }
 
-    public GalleyView(Context context, AttributeSet attrs) {
+    public GalleryView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public GalleyView(Context context, AttributeSet attrs, int defStyle) {
+    public GalleryView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
@@ -273,7 +273,7 @@ public class GalleyView extends RecyclerView {
 
         @Override
         protected ViewHolder<Image> onCreateViewHolder(View root, int viewType) {
-            return new GalleyView.ViewHolder(root);
+            return new GalleryView.ViewHolder(root);
         }
     }
 

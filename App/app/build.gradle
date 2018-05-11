@@ -42,4 +42,6 @@ dependencies {
     //RecyclerView
     implementation "com.android.support:recyclerview-v7:$rootProject.ext.supportVersion"
     implementation project(':lang')
+    //uCrop
+    compile 'com.github.yalantis:ucrop:2.2.2-native'
 }

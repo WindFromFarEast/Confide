@@ -17,6 +17,7 @@ import com.bumptech.glide.request.target.ViewTarget;
 
 import net.confide.common.app.Activity;
 import net.confide.common.widget.PortraitView;
+import net.confide.push.activities.AccountActivity;
 import net.confide.push.fragment.main.ActiveFragment;
 import net.confide.push.fragment.main.ContactFragment;
 import net.confide.push.fragment.main.GroupFragment;
@@ -112,7 +113,8 @@ public class MainActivity extends Activity implements BottomNavigationView.OnNav
      */
     @OnClick(R.id.btn_action)
     void onActionClick() {
-
+        //跳转到AccountActivity
+        AccountActivity.show(this);
     }
 
     /**
