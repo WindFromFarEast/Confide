@@ -35,7 +35,7 @@ public abstract class Activity extends AppCompatActivity {
             int layoutId = getContentLayoutId();
             //将布局设置到Activity界面中
             setContentView(layoutId);
-            initPermission();
+            //initPermission();
             initWidget();
             initData();
         } else {
@@ -102,30 +102,30 @@ public abstract class Activity extends AppCompatActivity {
         finish();
     }
 
-    /**
-     * 初始化权限
-     */
-    protected void initPermission() {
-        //请求读写内存的权限
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this
-                    , new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}
-                    , PERMISSION_WRITE_EXTERNAL_REQUEST_CODE);
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case PERMISSION_WRITE_EXTERNAL_REQUEST_CODE: {
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    //允许权限后进行的操作
-                } else {
-                    Toast.makeText(this, "拒绝权限将导致应用异常", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            }
-        }
-    }
+//    /**
+//     * 初始化权限
+//     */
+//    protected void initPermission() {
+//        //请求读写内存的权限
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//                != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(this
+//                    , new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}
+//                    , PERMISSION_WRITE_EXTERNAL_REQUEST_CODE);
+//        }
+//    }
+//
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        switch (requestCode) {
+//            case PERMISSION_WRITE_EXTERNAL_REQUEST_CODE: {
+//                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                    //允许权限后进行的操作
+//                } else {
+//                    Toast.makeText(this, "拒绝权限将导致应用异常", Toast.LENGTH_SHORT).show();
+//                }
+//                break;
+//            }
+//        }
+//    }
 }

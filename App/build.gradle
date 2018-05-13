@@ -36,4 +36,8 @@ ext{
     supportVersion = '27.1.1'
     butterknifeVersion = '8.5.1'
     geniusVersion = '2.0.0'
+    //权限申请库
+    easyPMVersion = "0.3.0"
+    //OSS云存储版本
+    ossVersion = '2.3.0'
 }

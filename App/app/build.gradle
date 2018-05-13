@@ -44,4 +44,7 @@ dependencies {
     implementation project(':lang')
     //uCrop
     compile 'com.github.yalantis:ucrop:2.2.2-native'
+    //申请权限的库
+    implementation 'pub.devrel:easypermissions:1.2.0'
+    implementation project(':factory')
 }

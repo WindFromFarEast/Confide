@@ -35,6 +35,7 @@ public class GalleryFragment extends BottomSheetDialogFragment implements Galler
      */
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        //创建一个我们自定义的BottomSheetDialog,可以解决状态栏变黑的问题
         return new TransStatusBottomSheetDialog(getContext());
     }
 
@@ -95,7 +96,7 @@ public class GalleryFragment extends BottomSheetDialogFragment implements Galler
     /**
      * 自定义BottomSheetDialog类：解决弹出时顶部状态栏变黑的问题
      */
-    private static class TransStatusBottomSheetDialog extends BottomSheetDialog {
+    public static class TransStatusBottomSheetDialog extends BottomSheetDialog {
 
         public TransStatusBottomSheetDialog(@NonNull Context context) {
             super(context);

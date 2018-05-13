@@ -3,12 +3,15 @@ package net.confide.push.fragment.account;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.util.Log;
 
 import com.bumptech.glide.Glide;
 import com.yalantis.ucrop.UCrop;
 
 import net.confide.common.app.Application;
 import net.confide.common.widget.PortraitView;
+import net.confide.factory.Factory;
+import net.confide.factory.net.UploadHelper;
 import net.confide.push.R;
 import net.confide.push.fragment.media.GalleryFragment;
 
@@ -83,9 +86,21 @@ public class UpdateInfoFragment extends net.confide.common.app.Fragment {
     }
 
     /**
-     * 将剪切的图片加载到头像上
+     * 将剪切的图片加载到头像上,并上传至阿里云OSS
      */
     private void loadPortrait(Uri uri) {
         Glide.with(this).load(uri).asBitmap().centerCrop().into(mPortrait);
+        //获取图片本地地址
+        final String localPath = uri.getPath();
+        Log.e("TAG", "localpath:" + localPath);
+        //异步上传头像
+        Factory.runOnAsyn(new Runnable() {
+            @Override
+            public void run() {
+                //上传头像
+                String url = UploadHelper.uploadPortrait(localPath);
+                Log.e("TAG", "url: " + url);
+            }
+        });
     }
 }

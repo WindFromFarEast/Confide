@@ -1,5 +1,7 @@
-package net.confide.push;
+package net.confide.push.activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
@@ -17,7 +19,9 @@ import com.bumptech.glide.request.target.ViewTarget;
 
 import net.confide.common.app.Activity;
 import net.confide.common.widget.PortraitView;
+import net.confide.push.R;
 import net.confide.push.activities.AccountActivity;
+import net.confide.push.fragment.assist.PermissionFragment;
 import net.confide.push.fragment.main.ActiveFragment;
 import net.confide.push.fragment.main.ContactFragment;
 import net.confide.push.fragment.main.GroupFragment;
@@ -61,6 +65,14 @@ public class MainActivity extends Activity implements BottomNavigationView.OnNav
     //Fragment调度和重用的工具类
     private NavHelper<Integer> mNavHelper;
 
+    /**
+     * MainActivity的跳转接口
+     * @param context
+     */
+    public static void show(Context context) {
+        context.startActivity(new Intent(context, MainActivity.class));
+    }
+
     @Override
     protected int getContentLayoutId() {
         return R.layout.activity_main;
@@ -86,6 +98,8 @@ public class MainActivity extends Activity implements BottomNavigationView.OnNav
                 });
         //为底部导航栏设置菜单子项监听器
         mNavigation.setOnNavigationItemSelectedListener(this);
+        //动态权限判断
+        PermissionFragment.haveAll(this, getSupportFragmentManager());
     }
 
     /**

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="net.confide.push.MainActivity">
+    tools:context="net.confide.push.activities.MainActivity">
 
     <!--状态栏和标题栏-->
     <android.support.design.widget.AppBarLayout
