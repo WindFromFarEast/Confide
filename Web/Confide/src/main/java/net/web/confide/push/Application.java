@@ -1,5 +1,6 @@
 package net.web.confide.push;
 
+import net.web.confide.push.provider.AuthRequestFilter;
 import net.web.confide.push.provider.GsonProvider;
 import net.web.confide.push.service.AccountService;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -14,6 +15,8 @@ public class Application extends ResourceConfig {
     public Application() {
         //注册逻辑处理的包名
         packages(AccountService.class.getPackage().getName());
+        //注册全局请求拦截器
+        register(AuthRequestFilter.class);
         //注册Json解析器
         register(GsonProvider.class);
         //注册日志打印输出
