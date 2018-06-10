@@ -21,17 +21,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--个推广播接收器-->
-        <receiver
-            android:name=".MessageReceiver"
-            android:enabled="true"
-            android:exported="true"
-            android:permission="1000">
-            <intent-filter>
-                <action android:name="com.igexin.sdk.action.${GETUI_APP_ID}" />
-            </intent-filter>
-        </receiver>
-        
+        <!-- 个推广播接收器 -->
+        <!--<receiver-->
+        <!--android:name=".MessageReceiver"-->
+        <!--android:enabled="true"-->
+        <!--android:exported="true"-->
+        <!--android:permission="1000">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="com.igexin.sdk.action.${GETUI_APP_ID}" />-->
+        <!--</intent-filter>-->
+        <!--</receiver>-->
+
         <activity
             android:name=".LaunchActivity"
             android:theme="@style/AppTheme.TransStatusBar">
@@ -44,7 +44,7 @@
 
         <activity
             android:name=".activities.MainActivity"
-            android:theme="@style/AppTheme.Main"/>
+            android:theme="@style/AppTheme.Main" />
 
         <activity
             android:name=".activities.AccountActivity"
@@ -54,7 +54,19 @@
             android:name="com.yalantis.ucrop.UCropActivity"
             android:theme="@style/AppTheme" />
 
-        <activity android:name=".activities.UserActivity"/>
+        <activity
+            android:name=".activities.UserActivity"
+            android:label="UserActivity"
+            android:theme="@style/AppTheme.Account" />
+
+        <service
+            android:name=".DemoPushService"
+            android:enabled="true"
+            android:exported="true"
+            android:label="PushService"
+            android:process=":pushservice" />
+
+        <service android:name=".DemoIntentService" />
     </application>
 
 </manifest>

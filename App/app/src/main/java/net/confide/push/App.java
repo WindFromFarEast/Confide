@@ -13,6 +13,8 @@ public class App extends Application {
         //初始化Factory
         Factory.setup();
         //初始化推送框架
-        PushManager.getInstance().initialize(this);
+        PushManager.getInstance().initialize(this.getApplicationContext(), DemoPushService.class);
+        //
+        PushManager.getInstance().registerPushIntentService(this.getApplicationContext(), DemoIntentService.class);
     }
 }

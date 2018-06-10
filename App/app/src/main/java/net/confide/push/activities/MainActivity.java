@@ -2,6 +2,7 @@ package net.confide.push.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
@@ -19,6 +20,7 @@ import com.bumptech.glide.request.target.ViewTarget;
 
 import net.confide.common.app.Activity;
 import net.confide.common.widget.PortraitView;
+import net.confide.factory.persistence.Account;
 import net.confide.push.R;
 import net.confide.push.activities.AccountActivity;
 import net.confide.push.fragment.assist.PermissionFragment;
@@ -71,6 +73,19 @@ public class MainActivity extends Activity implements BottomNavigationView.OnNav
      */
     public static void show(Context context) {
         context.startActivity(new Intent(context, MainActivity.class));
+    }
+
+    @Override
+    protected boolean initArgs(Bundle bundle) {
+        if (Account.isCompleted()) {
+            //用户信息完整,走正常流程
+            return super.initArgs(bundle);
+        } else {
+            //用户信息不完整
+            UserActivity.show(this);//跳转到用户信息界面
+            //返回false,销毁当前界面
+            return false;
+        }
     }
 
     @Override

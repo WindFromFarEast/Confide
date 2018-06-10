@@ -12,6 +12,11 @@ import net.confide.factory.model.api.account.AccountRspModel;
 import net.confide.factory.model.db.User;
 import net.confide.factory.model.db.User_Table;
 
+import org.w3c.dom.Text;
+
+/**
+ * 用户信息工具类：用来对当前用户的判断和操作
+ */
 public class Account {
 
     private static final String KEY_PUSH_ID = "KEY_PUSH_ID";
@@ -79,7 +84,7 @@ public class Account {
      * @return
      */
     public static boolean isLogin() {
-        return !TextUtils.isEmpty(userId) && TextUtils.isEmpty(token);
+        return !TextUtils.isEmpty(userId) && !TextUtils.isEmpty(token);
     }
 
     /**
@@ -87,8 +92,15 @@ public class Account {
      * @return
      */
     public static boolean isCompleted() {
-        //TODO
-        return isLogin();
+        if (isLogin()) {
+            //在成功登录的情况下,判断用户的头像、描述、性别是否完善
+            User self = getUser();
+            return !TextUtils.isEmpty(self.getDesc())
+                    && !TextUtils.isEmpty(self.getPortrait())
+                    && self.getSex() != 0;
+        }
+        //未登录时默认未完善用户信息
+        return false;
     }
 
     /**

@@ -9,14 +9,13 @@ import android.graphics.drawable.ColorDrawable;
 import android.text.TextUtils;
 import android.util.Property;
 import android.view.View;
-
 import net.confide.common.app.Activity;
 import net.confide.factory.persistence.Account;
 import net.confide.push.activities.AccountActivity;
 import net.confide.push.activities.MainActivity;
 import net.confide.push.fragment.assist.PermissionFragment;
-import net.qiujuer.genius.res.Resource;
 import net.qiujuer.genius.ui.compat.UiCompat;
+import com.igexin.sdk.PushManager;
 
 public class LaunchActivity extends Activity {
 
@@ -44,6 +43,8 @@ public class LaunchActivity extends Activity {
     @Override
     protected void initData() {
         super.initData();
+        //注册IntentService
+//        PushManager.getInstance().registerPushIntentService(this.getApplicationContext(), DemoIntentService.class);
         //渐变动画到50%后,等待pushId的获取
         startAnim(0.5f, new Runnable() {
             @Override

@@ -14,9 +14,12 @@ android {
         manifestPlaceholders = [
                 GETUI_APP_ID    : "Srn3teI3vn8vtzM3B3pV87",
                 GETUI_APP_KEY   : "uAeqFhxVWo7TjZbG4jvHe3",
-                GETUI_APP_SECRET: "7bXAmItjA49W1Jsqa3x6z6",
-                PACKAGE_NAME    : applicationId
+                GETUI_APP_SECRET: "7bXAmItjA49W1Jsqa3x6z6"
         ]
+
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "x86_64", "x86"
+        }
     }
     buildTypes {
         release {
@@ -63,5 +66,5 @@ dependencies {
     //申请权限的库
     api 'pub.devrel:easypermissions:1.2.0'
     //个推
-    implementation "com.getui:sdk:$rootProject.ext.getuiVersion"
+    api "com.getui:sdk:2.12.3.0"
 }
