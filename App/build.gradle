@@ -40,4 +40,12 @@ ext{
     easyPMVersion = "0.3.0"
     //OSS云存储版本
     ossVersion = '2.3.0'
+    //Gson版本
+    gsonVersion = '2.8.0'
+    //Retrofit版本
+    retrofitVersion = '2.1.0'
+    //个推版本
+    getuiVersion = '2.9.3.0'
+    //DBFLOW
+    dbflowVersion = "4.0.0-beta7"
 }

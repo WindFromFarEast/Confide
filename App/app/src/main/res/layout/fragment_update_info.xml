@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="net.confide.push.fragment.account.UpdateInfoFragment">
+    tools:context="net.confide.push.fragment.user.UpdateInfoFragment">
 
     <net.confide.common.widget.PortraitView
         android:id="@+id/im_portrait"

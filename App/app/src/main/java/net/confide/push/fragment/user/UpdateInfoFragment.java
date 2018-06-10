@@ -1,4 +1,4 @@
-package net.confide.push.fragment.account;
+package net.confide.push.fragment.user;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -33,7 +33,6 @@ public class UpdateInfoFragment extends net.confide.common.app.Fragment {
     public UpdateInfoFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     protected int getContentLayoutId() {
