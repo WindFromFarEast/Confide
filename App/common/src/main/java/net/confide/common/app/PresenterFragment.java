@@ -23,12 +23,21 @@ public abstract class PresenterFragment<Presenter extends BaseContract.Presenter
 
     @Override
     public void showError(int str) {
-        Application.showToast(str);
+        if (mPlaceHolderView != null) {
+            //如果当前Fragment设置了占位控件,优先使用占位控件来显示Error
+            mPlaceHolderView.triggerError(str);
+        } else {
+            //否则使用吐司来提示
+            Application.showToast(str);
+        }
     }
 
     @Override
     public void showLoading() {
-        //TODO 显示一个加载框
+        if (mPlaceHolderView != null) {
+            //如果当前Fragment设置了占位控件,优先使用占位控件来显示Loading
+            mPlaceHolderView.triggerLoading();
+        }
     }
 
     @Override

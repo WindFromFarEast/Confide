@@ -22,15 +22,15 @@
         android:theme="@style/AppTheme">
 
         <!-- 个推广播接收器 -->
-        <!--<receiver-->
-        <!--android:name=".MessageReceiver"-->
-        <!--android:enabled="true"-->
-        <!--android:exported="true"-->
-        <!--android:permission="1000">-->
-        <!--<intent-filter>-->
-        <!--<action android:name="com.igexin.sdk.action.${GETUI_APP_ID}" />-->
-        <!--</intent-filter>-->
-        <!--</receiver>-->
+        <!-- <receiver -->
+        <!-- android:name=".MessageReceiver" -->
+        <!-- android:enabled="true" -->
+        <!-- android:exported="true" -->
+        <!-- android:permission="1000"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.igexin.sdk.action.${GETUI_APP_ID}" /> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
 
         <activity
             android:name=".LaunchActivity"
@@ -65,8 +65,11 @@
             android:exported="true"
             android:label="PushService"
             android:process=":pushservice" />
-
         <service android:name=".DemoIntentService" />
+
+        <activity android:name=".activities.SearchActivity"
+            android:label="@string/title_search"
+            android:theme="@style/AppTheme.TransStatusBar"/>
     </application>
 
 </manifest>

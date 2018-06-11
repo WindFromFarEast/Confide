@@ -30,6 +30,8 @@ import net.confide.push.fragment.main.GroupFragment;
 import net.confide.push.helper.NavHelper;
 import net.qiujuer.genius.ui.Ui;
 
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -134,16 +136,23 @@ public class MainActivity extends Activity implements BottomNavigationView.OnNav
      */
     @OnClick(R.id.im_search)
     void onSearchMenuClick() {
-
+        int type = Objects.equals(mNavHelper.getCurrentTab().extra, R.string.title_group) ?
+                SearchActivity.TYPE_GROUP : SearchActivity.TYPE_USER;
+        SearchActivity.show(this, type);
     }
 
     /**
-     * 点击添加按钮的回调方法
+     * 点击浮动按钮的回调方法
      */
     @OnClick(R.id.btn_action)
     void onActionClick() {
-        //跳转到AccountActivity
-        AccountActivity.show(this);
+        //首先判断当前界面是群还是联系人界面
+        //若是群界面则打开群创建界面，若是其他则打开添加用户的界面
+        if (Objects.equals(mNavHelper.getCurrentTab().extra, R.string.title_group)) {
+            //TODO 打开群创建界面
+        } else {
+            SearchActivity.show(this, SearchActivity.TYPE_USER);
+        }
     }
 
     /**

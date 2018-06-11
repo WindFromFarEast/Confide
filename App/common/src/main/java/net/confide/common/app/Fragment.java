@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import net.confide.common.widget.convention.PlaceHolderView;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -21,6 +23,8 @@ public abstract class Fragment extends android.support.v4.app.Fragment{
     protected View mRoot;
     //
     protected Unbinder mRootUnbinder;
+    //占位控件
+    protected PlaceHolderView mPlaceHolderView;
 
     @Override
     public void onAttach(Context context) {
@@ -84,5 +88,12 @@ public abstract class Fragment extends android.support.v4.app.Fragment{
      */
     public boolean onBackPressed() {
         return false;//默认不处理
+    }
+
+    /**
+     * 设置Fragment内部的占位控件
+     */
+    public void setPlaceHolderView(PlaceHolderView placeHolderView) {
+        this.mPlaceHolderView = placeHolderView;
     }
 }
