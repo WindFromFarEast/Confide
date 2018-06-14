@@ -5,6 +5,7 @@
     tools:context="net.confide.push.fragment.search.SearchUserFragment">
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
@@ -12,5 +13,10 @@
         android:paddingBottom="@dimen/len_2"
         android:clipToPadding="false"
         android:visibility="gone"/>
+
+    <net.confide.common.widget.EmptyView
+        android:id="@+id/empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </FrameLayout>

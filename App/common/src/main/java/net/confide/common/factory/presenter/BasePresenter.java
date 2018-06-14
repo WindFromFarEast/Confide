@@ -19,6 +19,9 @@ public class BasePresenter<T extends BaseContract.View> implements BaseContract.
         return mView;
     }
 
+    /**
+     * 加载中
+     */
     @Override
     public void start() {
         T view = mView;

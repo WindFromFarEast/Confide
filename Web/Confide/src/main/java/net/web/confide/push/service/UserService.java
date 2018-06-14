@@ -22,7 +22,6 @@ public class UserService extends BaseService {
 
     /**
      * 用户信息修改接口
-     *
      * @param model
      * @return
      */
