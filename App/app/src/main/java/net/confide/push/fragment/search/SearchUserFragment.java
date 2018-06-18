@@ -18,6 +18,7 @@ import net.confide.factory.presenter.contact.FollowPresenter;
 import net.confide.factory.presenter.search.SearchContract;
 import net.confide.factory.presenter.search.SearchUserPresenter;
 import net.confide.push.R;
+import net.confide.push.activities.PersonalActivity;
 import net.confide.push.activities.SearchActivity;
 import net.qiujuer.genius.ui.Ui;
 import net.qiujuer.genius.ui.compat.UiCompat;
@@ -129,13 +130,18 @@ public class SearchUserFragment extends PresenterFragment<SearchContract.Present
 
         @Override
         protected void onBind(UserCard userCard) {
-            Glide.with(SearchUserFragment.this)
-                    .load(userCard.getPortrait())
-                    .centerCrop()
-                    .into(mPortraitView);
-
+            mPortraitView.setup(Glide.with(SearchUserFragment.this), userCard);
             mName.setText(userCard.getName());
             mFollow.setEnabled(!userCard.isFollow());
+        }
+
+        /**
+         * 点击头像
+         */
+        @OnClick(R.id.im_portrait)
+        void onPortraitClick() {
+            //打开个人信息界面
+            PersonalActivity.show(getContext(), mData.getId());
         }
 
         /**

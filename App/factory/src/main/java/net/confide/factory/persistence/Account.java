@@ -144,6 +144,14 @@ public class Account {
     }
 
     /**
+     * 得到当前用户id
+     * @return
+     */
+    public static String getUserId() {
+        return getUser().getId();
+    }
+
+    /**
      * 获取登录token
      * @return
      */

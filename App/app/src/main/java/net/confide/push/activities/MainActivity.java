@@ -129,6 +129,16 @@ public class MainActivity extends Activity implements BottomNavigationView.OnNav
         Menu menu = mNavigation.getMenu();
         //第一次进入界面时,默认显示Home子项,这个方法将回调onNavigationItemSelected('home对应的MenuItem');
         menu.performIdentifierAction(R.id.action_home, 0);
+        //初始化头像加载
+        mPortrait.setup(Glide.with(this), Account.getUser());
+    }
+
+    /**
+     * 点击头像回调
+     */
+    @OnClick(R.id.im_portrait)
+    void onPortraitClick() {
+        PersonalActivity.show(this, Account.getUserId());
     }
 
     /**

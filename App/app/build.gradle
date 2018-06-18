@@ -42,7 +42,7 @@ dependencies {
     api "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeVersion"
     //MD
-    implementation "com.android.support:design:$rootProject.ext.supportVersion"
+    implementation "com.android.support:design:27.1.1"
     //
     api "net.qiujuer.genius:ui:$rootProject.ext.geniusVersion"
     api "net.qiujuer.genius:res:$rootProject.ext.geniusVersion"
@@ -59,8 +59,8 @@ dependencies {
     //circleimageview
     api 'de.hdodenhof:circleimageview:2.2.0'
     //RecyclerView
-    api "com.android.support:recyclerview-v7:$rootProject.ext.supportVersion"
-    api project(':lang')
+    api "com.android.support:recyclerview-v7:27.1.1"
+    //compile project(':lang')
     //uCrop
     api 'com.github.yalantis:ucrop:2.2.2-native'
     //申请权限的库

@@ -20,6 +20,7 @@ import butterknife.Unbinder;
 /**
  * RecyclerView适配器基类——抽象类,不能被实例化,只能被继承
  */
+@SuppressWarnings({"unchecked", "unused"})
 public abstract class RecyclerAdapter<Data> extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder<Data>>
         implements View.OnClickListener, View.OnLongClickListener, AdapterCallback<Data> {
 
@@ -121,6 +122,14 @@ public abstract class RecyclerAdapter<Data> extends RecyclerView.Adapter<Recycle
     @Override
     public int getItemCount() {
         return mDataList.size();
+    }
+
+    /**
+     * 返回数据源集合
+     * @return
+     */
+    public List<Data> getItems() {
+        return mDataList;
     }
 
     /**

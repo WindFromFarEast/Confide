@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+
+import net.confide.common.widget.convention.PlaceHolderView;
+
 import java.util.List;
 import butterknife.ButterKnife;
 
@@ -14,7 +17,8 @@ import butterknife.ButterKnife;
  */
 public abstract class Activity extends AppCompatActivity {
 
-    private static final int PERMISSION_WRITE_EXTERNAL_REQUEST_CODE = 1;
+    //占位控件
+    protected PlaceHolderView mPlaceHolderView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,12 +32,20 @@ public abstract class Activity extends AppCompatActivity {
             //将布局设置到Activity界面中
             setContentView(layoutId);
             //initPermission();
+            initBefore();
             initWidget();
             initData();
         } else {
             //参数错误直接finish当前Activity
             finish();
         }
+    }
+
+    /**
+     * 初始化控件调用之前的初始化操作
+     */
+    protected void initBefore() {
+
     }
 
     protected void initWindows() {
@@ -92,6 +104,13 @@ public abstract class Activity extends AppCompatActivity {
         }
         super.onBackPressed();
         finish();
+    }
+
+    /**
+     * 设置Activity内部的占位控件
+     */
+    public void setPlaceHolderView(PlaceHolderView placeHolderView) {
+        this.mPlaceHolderView = placeHolderView;
     }
 
 //    /**

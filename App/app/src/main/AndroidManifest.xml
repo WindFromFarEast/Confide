@@ -41,19 +41,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activities.MainActivity"
             android:theme="@style/AppTheme.Main" />
-
         <activity
             android:name=".activities.AccountActivity"
             android:theme="@style/AppTheme.Account" />
-
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".activities.UserActivity"
             android:label="UserActivity"
@@ -67,8 +63,15 @@
             android:process=":pushservice" />
         <service android:name=".DemoIntentService" />
 
-        <activity android:name=".activities.SearchActivity"
+        <activity
+            android:name=".activities.SearchActivity"
             android:label="@string/title_search"
+            android:theme="@style/AppTheme.TransStatusBar" />
+
+        <activity android:name=".activities.MessageActivity" />
+
+        <activity
+            android:name=".activities.PersonalActivity"
             android:theme="@style/AppTheme.TransStatusBar"/>
     </application>
 

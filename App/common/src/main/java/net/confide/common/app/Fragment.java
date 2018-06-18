@@ -25,6 +25,8 @@ public abstract class Fragment extends android.support.v4.app.Fragment{
     protected Unbinder mRootUnbinder;
     //占位控件
     protected PlaceHolderView mPlaceHolderView;
+    //是否是第一次初始化数据
+    protected boolean misFirstInitData = true;
 
     @Override
     public void onAttach(Context context) {
@@ -58,6 +60,13 @@ public abstract class Fragment extends android.support.v4.app.Fragment{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        //
+        if (misFirstInitData) {
+            //触发一次初始化数据后,就不再是第一次初始化
+            misFirstInitData = false;
+            //首次初始化数据时回调
+            onFirstInit();
+        }
         //在Fragment的界面初始化完成后再初始化数据
         initData();
     }
@@ -78,6 +87,13 @@ public abstract class Fragment extends android.support.v4.app.Fragment{
 
     //初始化数据
     protected void initData() {
+
+    }
+
+    /**
+     * 首次初始化数据时回调
+     */
+    protected void onFirstInit() {
 
     }
 

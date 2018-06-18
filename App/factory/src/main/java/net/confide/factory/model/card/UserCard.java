@@ -1,10 +1,11 @@
 package net.confide.factory.model.card;
 
+import net.confide.common.factory.model.Author;
 import net.confide.factory.model.db.User;
 
 import java.util.Date;
 
-public class UserCard {
+public class UserCard implements Author {
 
     private String id;
     private String name;
