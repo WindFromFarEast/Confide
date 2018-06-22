@@ -30,4 +30,9 @@ public interface DataSource {
         //数据加载失败
         void onDataNotAvailable(@StringRes int strRes);
     }
+
+    /**
+     * 销毁操作
+     */
+    void dispose();
 }

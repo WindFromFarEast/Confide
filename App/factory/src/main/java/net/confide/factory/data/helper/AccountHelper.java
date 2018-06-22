@@ -31,7 +31,8 @@ public class AccountHelper {
 
     /**
      * 网络通信进行用户的注册
-     * @param model 注册Model
+     *
+     * @param model    注册Model
      * @param callback 注册成功、失败的回调接口
      */
     public static void register(final RegisterModel model, final DataSource.Callback<User> callback) {
@@ -45,6 +46,7 @@ public class AccountHelper {
 
     /**
      * 网络通信进行用户的登录
+     *
      * @param model
      * @param callback
      */
@@ -59,6 +61,7 @@ public class AccountHelper {
 
     /**
      * 对设备id进行绑定
+     *
      * @param callback
      */
     public static void bindPush(final DataSource.Callback<User> callback) {
@@ -93,8 +96,10 @@ public class AccountHelper {
                 AccountRspModel accountRspModel = rspModel.getResult();
                 // 获取我的信息
                 User user = accountRspModel.getUser();
+                //使用数据库封装工具类进行保存
+                DbHelper.save(User.class, user);
                 // 第一种，之间保存
-                user.save();
+                //user.save();
                     /*
                     // 第二种通过ModelAdapter
                     FlowManager.getModelAdapter(User.class)
