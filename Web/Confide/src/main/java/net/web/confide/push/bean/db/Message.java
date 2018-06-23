@@ -1,5 +1,6 @@
 package net.web.confide.push.bean.db;
 
+import net.web.confide.push.bean.api.message.MessageCreateModel;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -13,6 +14,10 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "TB_MESSAGE")
 public class Message {
+    //发送给人的消息标志
+    public static final int RECEIVER_TYPE_NONE = 1;
+    //发送给群的消息标志
+    public static final int RECEIVER_TYPE_GROUP = 2;
 
     //消息类型
     public static final int TYPE_STR = 1;//字符串类型
@@ -77,7 +82,41 @@ public class Message {
     @Column(updatable = false, insertable = false)
     private String groupId;
 
+    public Message() {
 
+    }
+
+    /**
+     * 向好友发送的消息构造方法
+     * @param sender
+     * @param receiver
+     * @param model
+     */
+    public Message(User sender, User receiver, MessageCreateModel model) {
+        this.id = model.getId();
+        this.content = model.getContent();
+        this.attach = model.getAttach();
+        this.type = model.getType();
+
+        this.sender = sender;
+        this.receiver = receiver;
+    }
+
+    /**
+     * 向群发送的消息构造方法
+     * @param sender
+     * @param group
+     * @param model
+     */
+    public Message(User sender, Group group, MessageCreateModel model) {
+        this.id = model.getId();
+        this.content = model.getContent();
+        this.attach = model.getAttach();
+        this.type = model.getType();
+
+        this.sender = sender;
+        this.group = group;
+    }
 
     public String getId() {
         return id;
