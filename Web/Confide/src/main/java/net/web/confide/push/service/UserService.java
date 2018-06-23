@@ -1,12 +1,14 @@
 package net.web.confide.push.service;
 
 import com.google.common.base.Strings;
+import net.web.confide.push.bean.api.base.PushModel;
 import net.web.confide.push.bean.api.base.ResponseModel;
 import net.web.confide.push.bean.api.user.UpdateInfoModel;
 import net.web.confide.push.bean.card.UserCard;
 import net.web.confide.push.bean.db.User;
 import net.web.confide.push.bean.db.UserFollow;
 import net.web.confide.push.factory.UserFactory;
+import net.web.confide.push.utils.PushDispatcher;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

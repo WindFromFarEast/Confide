@@ -67,6 +67,7 @@ public class PushModel {
     }
 
     public static class Entity {
+
         public Entity() {
 
         }
@@ -77,13 +78,15 @@ public class PushModel {
         public String content;
         // 消息生成时间
         public Date createAt;
-    }
 
-    @Override
-    public String toString() {
-        return "PushModel{" +
-                "entities=" + entities +
-                '}';
+        @Override
+        public String toString() {
+            return "Entity{" +
+                    "type=" + type +
+                    ", content='" + content + '\'' +
+                    ", createAt=" + createAt +
+                    '}';
+        }
     }
 }
 

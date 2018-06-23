@@ -35,7 +35,7 @@ public class DemoIntentService extends GTIntentService {
         byte[] payload = msg.getPayload();
         if (payload != null) {
             String message = new String(payload);
-            Log.i(TAG, "GET_MSG_DATA" + message);
+            Log.e(TAG, "GET_MSG_DATA" + message);
             onMessageArrived(message);
         }
     }
