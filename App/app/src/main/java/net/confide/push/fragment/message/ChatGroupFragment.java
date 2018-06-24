@@ -1,12 +1,13 @@
 package net.confide.push.fragment.message;
 
-import android.support.v4.app.Fragment;
+import net.confide.factory.model.db.Group;
+import net.confide.factory.presenter.message.ChatContract;
 import net.confide.push.R;
 
 /**
- * A simple {@link Fragment} subclass.
+ * 群聊界面
  */
-public class ChatGroupFragment extends ChatFragment {
+public class ChatGroupFragment extends ChatFragment<Group> implements ChatContract.GroupView {
 
 
     public ChatGroupFragment() {
@@ -18,4 +19,13 @@ public class ChatGroupFragment extends ChatFragment {
         return R.layout.fragment_chat_group;
     }
 
+    @Override
+    protected ChatContract.Presenter initPresenter() {
+        return null;
+    }
+
+    @Override
+    public void onInit(Group group) {
+
+    }
 }

@@ -4,6 +4,8 @@ import net.confide.factory.model.api.RspModel;
 import net.confide.factory.model.api.account.AccountRspModel;
 import net.confide.factory.model.api.account.LoginModel;
 import net.confide.factory.model.api.account.RegisterModel;
+import net.confide.factory.model.api.message.MsgCreateModel;
+import net.confide.factory.model.card.MessageCard;
 import net.confide.factory.model.card.UserCard;
 import net.confide.factory.model.user.UserUpdateModel;
 
@@ -81,4 +83,12 @@ public interface RemoteService {
      */
     @GET("user/{userId}")
     Call<RspModel<UserCard>> userFind(@Path("userId") String userId);
+
+    /**
+     * 发送消息的接口
+     * @param model
+     * @return
+     */
+    @POST("msg")
+    Call<RspModel<MessageCard>> msgPush(@Body MsgCreateModel model);
 }

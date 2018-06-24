@@ -49,6 +49,10 @@ public abstract class BaseDbRepository<Data extends BaseDbModel<Data>> implement
         dataList.clear();
     }
 
+    /**
+     * 被观察者通知观察者时回调的方法
+     * @param list
+     */
     @Override
     public void onDataSave(Data[] list) {
         boolean isChanged = false;

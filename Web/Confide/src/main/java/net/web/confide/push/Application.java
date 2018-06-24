@@ -21,5 +21,6 @@ public class Application extends ResourceConfig {
         register(GsonProvider.class);
         //注册日志打印输出
         register(Logger.class);
+
     }
 }
